@@ -1,0 +1,13 @@
+{
+  "rewrites": [
+    {
+      "source": "/app/:path*",
+      "destination": "/app"
+    }
+  ],
+  "env": ["MONGODB_NAME", "MONGODB_URI"],
+  "i18n": {
+    "locales": ["en", "it", "fake"],
+    "defaultLocale": "fake"
+  }
+}
