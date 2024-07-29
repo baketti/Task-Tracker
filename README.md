@@ -58,7 +58,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
   
 - The `pages/app` directory renders the AppSpa component giving you access to the react spa: `/app`.
 - All AppSpa code is within the spas/app folder. It contains all scenes and redux-store. 
-- I developed a Single Page Application (SPA) in Next.js without using server-side rendering because SEARCH ENGINE OPTIMIZATION(SEO) is not necessary for this application. The app is private and requires login access. Given the private nature of the app, client-side data rendering is sufficient.
+- I developed a Single Page Application (SPA) in Next.js without using server-side rendering because Search Engine Optimization(SEO) is not necessary for this application. The app is private and requires login access. Given the private nature of the app, client-side data rendering is sufficient.
 
 To learn more about Next.js, take a look at the following resources:
 
