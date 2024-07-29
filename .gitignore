@@ -26,12 +26,12 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # local env files
-.env.template
-.env*.local
-.env.test
-.env
+/.env.template
+/.env*.local
+/.env.test
+/.env
 
-.package-lock.json
+/.package-lock.json
 # vercel
 .vercel
 
