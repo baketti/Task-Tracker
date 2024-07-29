@@ -12,12 +12,16 @@ type CreateWorkerDialogData = {
 };
 export const useCreateWorkerDialog = () => {
   const [t] = useTypedTranslations();
-  const schema = yup.object({
-    fullName: yup
-      .string()
-      .min(5, t("validation.nameLen"))
-      .required(t("validation.required")),
-  });
+
+  const schema = useMemo(() => {
+    return yup.object({
+      fullName: yup
+        .string()
+        .min(3, t("validation.nameLen"))
+        .required(t("validation.required")),
+    });
+  },[t])
+
   const formData = useForm<CreateWorkerDialogData>({
     resolver: yupResolver(schema),
     defaultValues: {

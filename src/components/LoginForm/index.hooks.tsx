@@ -8,11 +8,6 @@ import { actions, selectors } from "@/spas/app/redux-store";
 import { useNavigate, useParams } from "react-router-dom";
 import { Locales } from "@/models/common/Translation";
 
-const schema = yup.object({
-  email: yup.string().email().required("Email is required"),
-  password: yup.string().required("Password is required"),
-});
-
 type LoginFormData = {
   email: string;
   password: string;
@@ -22,7 +17,14 @@ export const useLoginForm = () => {
   const [t] = useTypedTranslations();
   const navigate = useNavigate();
   const { languageCode } = useParams<{ languageCode: Locales }>();
-
+  
+  const schema = useMemo(() => {
+      return yup.object({
+        email: yup.string().email().required("Email "+t("is.required")),
+        password: yup.string().required("Password "+t("is.required")),
+      })
+    }, [t]
+  );
   const formData = useForm<LoginFormData>({
     resolver: yupResolver(schema),
     defaultValues: {

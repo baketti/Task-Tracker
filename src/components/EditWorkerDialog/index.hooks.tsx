@@ -30,30 +30,32 @@ export const useEditWorkerDialog = () => {
     [workers, editWorkerId],
   );
 
-  const schema = yup.object({
-    fullName: yup.string().min(3, t("validation.nameLen")).optional(),
-    enabledJobIds: yup.array().nullable().of(yup.string()),
-    enableInternship: yup.boolean().optional(),
-    hours: yup
-      .number()
-      .nullable()
-      .when(["enableInternship"], {
-        is: (enableInternship, readOnly) =>
-          enableInternship === true && readOnly === false,
-        then: yup.number().required(),
-        otherwise: yup.number().nullable(),
-      }),
-    startDate: yup
-      .string()
-      .nullable()
-      .when(["enableInternship"], {
-        is: (enableInternship, readOnly) =>
-          enableInternship === true && readOnly === false,
-        then: yup.string().required(),
-        otherwise: yup.string().nullable(),
-      }),
-  });
-
+  const schema = useMemo(() => {
+    return yup.object({
+      fullName: yup.string().min(3, t("validation.nameLen")).optional(),
+      enabledJobIds: yup.array().nullable().of(yup.string()),
+      enableInternship: yup.boolean().optional(),
+      hours: yup
+        .number()
+        .nullable()
+        .when(["enableInternship"], {
+          is: (enableInternship, readOnly) =>
+            enableInternship === true && readOnly === false,
+          then: yup.number().required(),
+          otherwise: yup.number().nullable(),
+        }),
+      startDate: yup
+        .string()
+        .nullable()
+        .when(["enableInternship"], {
+          is: (enableInternship, readOnly) =>
+            enableInternship === true && readOnly === false,
+          then: yup.string().required(),
+          otherwise: yup.string().nullable(),
+        }),
+    });
+  },[t])
+  
   const formData = useForm<EditWorkerDialogData>({
     resolver: yupResolver(schema),
     defaultValues: {

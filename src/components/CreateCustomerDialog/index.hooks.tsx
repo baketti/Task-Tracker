@@ -14,13 +14,17 @@ type CreateCustomerDialogData = {
 
 export const useCreateCustomerDialog = () => {
   const [t] = useTypedTranslations();
-  const schema = yup.object({
-    name: yup
-      .string()
-      .min(3, t("validation.nameLen"))
-      .required(t("validation.required")),
-    logoUrl: yup.string().optional(),
-  });
+
+  const schema = useMemo(() => {
+    return yup.object({
+      name: yup
+        .string()
+        .min(3, t("validation.nameLen"))
+        .required(t("validation.required")),
+      logoUrl: yup.string().optional(),
+    });
+  },[t])
+
   const formData = useForm<CreateCustomerDialogData>({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -28,11 +32,12 @@ export const useCreateCustomerDialog = () => {
       logoUrl: "",
     },
   });
+
   const {
     handleSubmit,
     formState: { isValid, isSubmitted },
   } = formData;
-  //con il seguente codice captiamo il fatto che l'app sta creando il customer
+
   const isCreatingCustomer: boolean = useSelector(
     selectors.getAjaxIsLoadingByApi(actions.postCustomers.api),
   );

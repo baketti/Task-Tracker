@@ -9,13 +9,17 @@ import { useCallback, useMemo } from "react";
 
 export const useCreateJobDialog = () => {
   const [t] = useTypedTranslations();
-  const schema = yup.object({
-    name: yup
-      .string()
-      .min(3, t("validation.nameLen"))
-      .required(t("validation.required")),
-    projectId: yup.string().required(t("validation.required")),
-  });
+  
+  const schema = useMemo(() => {
+    return yup.object({
+      name: yup
+        .string()
+        .min(3, t("validation.nameLen"))
+        .required(t("validation.required")),
+      projectId: yup.string().required(t("validation.required")),
+    });
+  },[t])
+
   const formData = useForm({
     resolver: yupResolver(schema),
     defaultValues: {

@@ -31,6 +31,7 @@ export type Translations = Readonly<{
   "generic.confirm": string;
   "generic.success": string;
   "generic.user": string;
+  "is.required": string;
   "patch.success": string;
   "job.add": string;
   "job.assign": string;
@@ -47,6 +48,9 @@ export type Translations = Readonly<{
   "project.website": string;
   "projects.deleteTitle": string;
   "projects.editTitle": string;
+  "password.match": string; 
+  "password.len": string; 
+  "role":string;
   "validation.required": string;
   "validation.nameLen": string;
   "worker.actions": string;

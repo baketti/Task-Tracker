@@ -9,16 +9,18 @@ import { useCallback, useMemo } from "react";
 
 export const useCreateProjectDialog = () => {
   const [t] = useTypedTranslations();
-  const customers = useSelector(selectors.getCustomersList);
-  const schema = yup.object({
-    name: yup
-      .string()
-      .min(3, t("validation.nameLen"))
-      .required(t("validation.required")),
-    website: yup.string().url().optional(),
-    customerId: yup.string().required(t("validation.required")),
-    intermediaryId: yup.string().optional().nullable(),
-  });
+
+  const schema = useMemo(() => {
+    return yup.object({
+      name: yup
+        .string()
+        .min(3, t("validation.nameLen"))
+        .required(t("validation.required")),
+      website: yup.string().url().optional(),
+      customerId: yup.string().required(t("validation.required")),
+      intermediaryId: yup.string().optional().nullable(),
+    });
+  },[t])
 
   const formData = useForm({
     resolver: yupResolver(schema),

@@ -18,12 +18,14 @@ type EditProjectDialogData = {
 export const useEditProjectDialog = () => {
   const [t] = useTypedTranslations();
 
-  const schema = yup.object({
-    name: yup.string().min(3, t("validation.nameLen")).optional(),
-    website: yup.string().url().optional(),
-    customerId: yup.string().optional(),
-    intermediaryId: yup.string().optional().nullable(),
-  });
+  const schema = useMemo(() => {
+    return yup.object({
+      name: yup.string().min(3, t("validation.nameLen")).optional(),
+      website: yup.string().url().optional(),
+      customerId: yup.string().optional(),
+      intermediaryId: yup.string().optional().nullable(),
+    });
+  },[t])
 
   const projects = useSelector(selectors.getProjectsList);
   const editProjectId = useSelector(selectors.getEditProjectId);

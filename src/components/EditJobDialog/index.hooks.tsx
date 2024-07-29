@@ -6,25 +6,25 @@ import { useTypedTranslations } from "@/hooks/useTypedTranslations";
 import { actions, selectors } from "@/spas/app/redux-store";
 import { useDispatch, useSelector } from "react-redux";
 import { DialogTypes } from "@/spas/app/redux-store/slices/ui/ui.interfaces";
-import { JobFe } from "@/models/client/JobFe";
 import { ObjectIdFe } from "@/models/common/JsUtility";
-import { ProjectFe } from "@/models/client/ProjectFe";
-import { getEditJobId } from "@/spas/app/redux-store/slices/job/job.selectors";
+
+type EditJobDialogData = {
+  name?: string;
+  //isActive?:boolean,
+  projectId?: ObjectIdFe;
+};
 
 export const useEditJobDialog = () => {
-  type EditJobDialogData = {
-    name?: string;
-    //isActive?:boolean,
-    projectId?: ObjectIdFe;
-  };
 
   const [t] = useTypedTranslations();
 
-  const schema = yup.object({
-    name: yup.string().min(3, t("validation.nameLen")).optional(),
-    // isActive: yup.boolean().optional(),
-    projectId: yup.string().optional(),
-  });
+  const schema = useMemo(() => {
+    return yup.object({
+      name: yup.string().min(3, t("validation.nameLen")).optional(),
+      // isActive: yup.boolean().optional(),
+      projectId: yup.string().optional(),
+    });
+  },[t])
 
   const jobs = useSelector(selectors.getJobsList);
   const editJobId = useSelector(selectors.getEditJobId);

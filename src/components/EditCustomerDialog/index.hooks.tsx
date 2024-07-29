@@ -16,13 +16,16 @@ type EditCustomerDialogData = {
 
 export const useEditCustomerDialog = () => {
   const [t] = useTypedTranslations();
-  const schema = yup.object({
-    name: yup
-      .string()
-      .min(3, t("validation.nameLen"))
-      .required(t("validation.required")),
-    logoUrl: yup.string().optional(),
-  });
+
+  const schema = useMemo(() => {
+    return yup.object({
+      name: yup
+        .string()
+        .min(3, t("validation.nameLen"))
+        .required(t("validation.required")),
+      logoUrl: yup.string().optional(),
+    });
+  },[t])
 
   const customers: CustomerFe[] = useSelector(selectors.getCustomersList);
   const editCustomerId: ObjectIdFe = useSelector(selectors.getEditCustomerId);

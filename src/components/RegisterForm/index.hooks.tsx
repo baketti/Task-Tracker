@@ -10,21 +10,6 @@ import { actions, selectors } from "@/spas/app/redux-store";
 import { useNavigate, useParams } from "react-router-dom";
 import { Locales } from "@/models/common/Translation";
 
-const schema = yup.object({
-  email: yup.string().email().required("Email is required"),
-  role: yup
-    .string()
-    .oneOf(Object.values(UserRoles))
-    .required("Role is required"),
-  password: yup
-    .string()
-    .min(8, "Password must contain at least 8 characters")
-    .required("Password is required"),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref("password")], "Passwords must match"),
-});
-
 type RegisterFormData = {
   email: string;
   role: string;
@@ -36,6 +21,23 @@ export const useRegisterForm = () => {
   const [t] = useTypedTranslations();
   const { languageCode } = useParams<{ languageCode: Locales }>();
   const dispatch = useDispatch();
+
+  const schema = useMemo(() => {
+    return yup.object({
+      email: yup.string().email().required("Email "+t("is.required")),
+      role: yup
+        .string()
+        .oneOf(Object.values(UserRoles))
+        .required(t("role")+t("is.required")),
+      password: yup
+        .string()
+        .min(8, t("password.len"))
+        .required("Password "+t("is.required")),
+      confirmPassword: yup
+        .string()
+        .oneOf([yup.ref("password")], t("password.match")),
+    });
+  },[t])
 
   const userRoleOptions = useMemo(
     () =>

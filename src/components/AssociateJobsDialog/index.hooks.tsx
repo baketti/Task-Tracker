@@ -12,15 +12,17 @@ type JobsAssociationsFormData = {
   associations: ObjectIdFe[];
 };
 
-const schema = yup.object({
-  associations: yup.array().required().of(yup.string()),
-});
-
 export const useAssociateJobsDialog = () => {
   const dispatch = useDispatch();
 
   const [t] = useTypedTranslations();
 
+  const schema = useMemo(() => {
+    return  yup.object({
+      associations: yup.array().required(t("validation.required")).of(yup.string()),
+    });  
+  },[t])
+  
   const jobs = useSelector(selectors.getJobsList);
   const worker = useSelector(selectors.getCurrentWorker);
   const enabledJobIds = useMemo(() => {
