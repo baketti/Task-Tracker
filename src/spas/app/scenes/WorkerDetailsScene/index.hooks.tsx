@@ -1,19 +1,29 @@
 import { actions, selectors } from "@/spas/app/redux-store";
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useEffect, useMemo, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { GridColDef } from "@mui/x-data-grid";
 import { IconButton } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useTypedTranslations } from "@/hooks/useTypedTranslations";
 import { DialogTypes } from "../../redux-store/slices/ui/ui.interfaces";
 import { ObjectIdFe } from "@/models/common/JsUtility";
 import useConfirmDialog from "@/hooks/useConfirmDialog";
+import { UserRoles } from "@/models/common/UserCommon";
+import { Locales } from "@/models/common/Translation";
 
 export const useWorkerDetailsScene = () => {
   const [t] = useTypedTranslations();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { languageCode } = useParams<{ languageCode: Locales }>();
+  //LOGGED USER
+  const user = useSelector(selectors.getUser);
+  useEffect(() => {
+    if(user.role !== UserRoles.Admin){
+      navigate(`/${languageCode}/app/workers`);
+    }
+  }, [navigate,user,languageCode]);
 
   const { workerId } = useParams();
 

@@ -42,7 +42,7 @@ export default async function handler(
     return ResponseHandler.json<DeleteWorkersByWorkerIdApi.SuccessResponse>(
       res,
       {
-        message: i18n.t("workers.name") + " " + i18n.t("delete.success"),
+        message: "Lavoratore eliminato",
       },
     );
   } catch (e) {

@@ -5,8 +5,6 @@ import {
 } from "@/lib/response-handler";
 import { NextApiResponse, NextApiRequest } from "next";
 import { PostWorkersApi } from "./interfaces";
-import { ObjectId } from "mongodb";
-import { User } from "@/models/server/User";
 import { Worker } from "@/models/server/Worker";
 import { ApisHelper } from "@/models/server/ApisHelper";
 import { i18n } from "@/translations/i18nextSetup";
@@ -33,7 +31,7 @@ export default async function handler(
 
     return ResponseHandler.json<PostWorkersApi.SuccessResponse>(res, {
       worker: worker.toClientVersion(),
-      message: i18n.t("workers.name") + " " + i18n.t("generic.success"),
+      message: "Lavoratore creato con successo",
     });
   } catch (e) {
     console.error(e);

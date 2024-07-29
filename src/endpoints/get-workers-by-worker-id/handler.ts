@@ -30,7 +30,11 @@ export default async function handler(
     const worker = await Worker.getById(workerId);
 
     if (!worker) {
-      return ResponseHandler.json<ErrorResponse>(res, {}, StatusCodes.NotFound);
+      return ResponseHandler.json<ErrorResponse>(
+        res, 
+        {}, 
+        StatusCodes.NotFound        
+      );
     }
 
     return ResponseHandler.json<GetWorkersByWorkerIdApi.SuccessResponse>(res, {

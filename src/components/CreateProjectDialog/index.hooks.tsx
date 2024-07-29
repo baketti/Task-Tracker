@@ -1,3 +1,4 @@
+import { useCallback, useMemo, useEffect } from "react";
 import { useTypedTranslations } from "@/hooks/useTypedTranslations";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
@@ -5,10 +6,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch, useSelector } from "react-redux";
 import { actions, selectors } from "@/spas/app/redux-store";
 import { DialogTypes } from "@/spas/app/redux-store/slices/ui/ui.interfaces";
-import { useCallback, useMemo } from "react";
 
 export const useCreateProjectDialog = () => {
   const [t] = useTypedTranslations();
+  const dispatch = useDispatch();
 
   const schema = useMemo(() => {
     return yup.object({
@@ -33,6 +34,7 @@ export const useCreateProjectDialog = () => {
   });
 
   const {
+    reset,
     handleSubmit,
     formState: { isValid, isSubmitted },
   } = formData;
@@ -43,11 +45,10 @@ export const useCreateProjectDialog = () => {
 
   const submitDisabled = (isSubmitted && !isValid) || isCreatingProject;
 
-  const dispatch = useDispatch();
-
   const isCreateProjectDialogOpen = useSelector(selectors.getIsDialogOpen)[
     DialogTypes.CREATE_PROJECT
   ];
+
   const triggerSubmit = useMemo(
     () =>
       handleSubmit((data) => {
@@ -55,6 +56,7 @@ export const useCreateProjectDialog = () => {
       }),
     [dispatch, handleSubmit],
   );
+
   const handleCloseDialog = useCallback(() => {
     dispatch(
       actions.setDialogOpen({
@@ -62,7 +64,22 @@ export const useCreateProjectDialog = () => {
         open: false,
       }),
     );
-  }, [dispatch]);
+    reset({
+      name: "",
+      website: "",
+      customerId: "",
+      intermediaryId: null,
+    })
+  }, [dispatch,reset]);
+
+  useEffect(() => {
+    reset({
+      name: "",
+      website: "",
+      customerId: "",
+      intermediaryId: null,
+    })
+  },[reset])
 
   return {
     formData,

@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -12,6 +12,7 @@ type CreateWorkerDialogData = {
 };
 export const useCreateWorkerDialog = () => {
   const [t] = useTypedTranslations();
+  const dispatch = useDispatch();
 
   const schema = useMemo(() => {
     return yup.object({
@@ -29,6 +30,7 @@ export const useCreateWorkerDialog = () => {
     },
   });
   const {
+    reset,
     handleSubmit,
     formState: { isValid, isSubmitted },
   } = formData;
@@ -39,10 +41,10 @@ export const useCreateWorkerDialog = () => {
 
   const submitDisabled: boolean = (isSubmitted && !isValid) || isCreatingWorker;
 
-  const dispatch = useDispatch();
   const isCreateWorkerDialogOpen = useSelector(selectors.getIsDialogOpen)[
     DialogTypes.CREATE_WORKER
   ];
+
   const triggerSubmit = useMemo(
     () =>
       handleSubmit((data) => {
@@ -58,7 +60,16 @@ export const useCreateWorkerDialog = () => {
         open: false,
       }),
     );
-  }, [dispatch]);
+    reset({
+      fullName: "",
+    })
+  }, [dispatch,reset]);
+
+  useEffect(() => {
+    reset({
+      fullName: "",
+    })
+  },[reset])
 
   return {
     formData,

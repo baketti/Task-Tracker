@@ -48,7 +48,7 @@ export default async function handler(
       res,
       {
         worker: worker.toClientVersion(),
-        message: i18n.t("workers.name") + " " + i18n.t("patch.success"),
+        message: "Lavoratore aggiornato con successo",
       },
     );
   } catch (e) {

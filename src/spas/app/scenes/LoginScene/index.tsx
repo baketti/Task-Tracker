@@ -23,7 +23,7 @@ export const LoginScene = memo(({}: LoginSceneProps) => {
       <Typography component="h1" variant="h5" color="primary">
         {t("sign.in")}
       </Typography>
-      <Paper sx={{ p: 4, minWidth: "480px" }}>
+      <Paper sx={{ p: 4, minWidth: {xs:"unset",sm:"480px"}}}>
         <LoginForm />
       </Paper>
     </Stack>

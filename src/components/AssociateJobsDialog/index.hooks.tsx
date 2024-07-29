@@ -73,7 +73,7 @@ export const useAssociateJobsDialog = () => {
         dispatch(
           actions.patchWorkersByWorkerId.request({
             workerId: worker.id,
-            enabledJobIds: data.associations,
+            enabledJobIds: [...worker.enabledJobIds, ...data.associations],
           }),
         );
       }),

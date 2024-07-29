@@ -41,7 +41,7 @@ export default async function handler(
     return ResponseHandler.json<DeleteProjectsByProjectIdApi.SuccessResponse>(
       res,
       {
-        message: i18n.t("project.name") + " " + i18n.t("delete.success"),
+        message: "Progetto eliminato",
       },
     );
   } catch (e) {

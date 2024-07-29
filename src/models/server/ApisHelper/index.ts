@@ -133,7 +133,7 @@ export class ApisHelper implements WithId<IApisHelper> {
         response: ResponseHandler.json<ErrorResponse>(
           res,
           {
-            message: i18n.t("is.loggedout"),
+            message: "Non sei loggato, per favore esegui il login",
           },
           StatusCodes.Unauthorized,
         ),
@@ -171,7 +171,7 @@ export class ApisHelper implements WithId<IApisHelper> {
         response: ResponseHandler.json<ErrorResponse>(
           res,
           {
-            message: i18n.t("only.admin"),
+            message: "Non sei autorizzato, solo gli amministratori possono eseguire questa azione",
           },
           StatusCodes.Forbidden,
         ),

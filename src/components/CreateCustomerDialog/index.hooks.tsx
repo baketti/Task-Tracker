@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -14,6 +14,7 @@ type CreateCustomerDialogData = {
 
 export const useCreateCustomerDialog = () => {
   const [t] = useTypedTranslations();
+  const dispatch = useDispatch();
 
   const schema = useMemo(() => {
     return yup.object({
@@ -34,8 +35,9 @@ export const useCreateCustomerDialog = () => {
   });
 
   const {
+    reset,
     handleSubmit,
-    formState: { isValid, isSubmitted },
+    formState: { isValid, isSubmitted }
   } = formData;
 
   const isCreatingCustomer: boolean = useSelector(
@@ -45,10 +47,10 @@ export const useCreateCustomerDialog = () => {
   const submitDisabled: boolean =
     (isSubmitted && !isValid) || isCreatingCustomer;
 
-  const dispatch = useDispatch();
   const isCreateCustomerDialogOpen = useSelector(selectors.getIsDialogOpen)[
     DialogTypes.CREATE_CUSTOMER
   ];
+
   const triggerSubmit = useMemo(
     () =>
       handleSubmit((data) => {
@@ -65,7 +67,18 @@ export const useCreateCustomerDialog = () => {
         open: false,
       }),
     );
-  }, [dispatch]);
+    reset({
+      name: "",
+      logoUrl: "",
+    })
+  }, [dispatch,reset]);
+
+  useEffect(() => {
+    reset({
+      name: "",
+      logoUrl: "",
+    })
+  },[reset])
 
   return {
     formData,

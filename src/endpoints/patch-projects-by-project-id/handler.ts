@@ -28,9 +28,15 @@ export default async function handler(
     }
 
     const { projectId } = queryStringParameters;
+
     const project = await Project.getById(new ObjectId(projectId));
+
     if (!project) {
-      return ResponseHandler.json<ErrorResponse>(res, {}, StatusCodes.NotFound);
+      return ResponseHandler.json<ErrorResponse>(
+        res, 
+        {}, 
+        StatusCodes.NotFound
+      );
     }
 
     const { name, website, customerId, intermediaryId } = req.payload;
@@ -39,14 +45,14 @@ export default async function handler(
       name: name ?? project.name,
       customerId: customerId ?? project.customerId,
       website: website ?? project.website,
-      intermediaryId: intermediaryId ?? project.intermediaryId,
+      intermediaryId: intermediaryId,
     });
 
     return ResponseHandler.json<PatchProjectsByProjectIdApi.SuccessResponse>(
       res,
       {
         project: project.toClientVersion(),
-        message: i18n.t("project.name") + " " + i18n.t("patch.success"),
+        message: "Progetto aggiornato con successo",
       },
     );
   } catch (e) {

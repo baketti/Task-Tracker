@@ -34,7 +34,7 @@ export default async function handler(
 
     return ResponseHandler.json<PostCustomersApi.SuccessResponse>(res, {
       customer: customer.toClientVersion(),
-      message: i18n.t("customers.name") + " " + i18n.t("generic.success"),
+      message: "Cliente creato con successo",
     });
   } catch (e) {
     console.error(e);

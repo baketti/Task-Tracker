@@ -45,8 +45,8 @@ export const useEditProjectDialog = () => {
     defaultValues: {
       name: editProject?.name || "",
       website: editProject?.website || "",
-      customerId: editProject?.customer._id || null,
-      intermediaryId: editProject?.intermediary._id || null,
+      customerId: editProject?.customer?._id || null,
+      intermediaryId: editProject?.intermediary?._id || null,
     },
   });
 
@@ -61,13 +61,14 @@ export const useEditProjectDialog = () => {
   const triggerSubmit = useMemo(
     () =>
       handleSubmit((data) => {
+        console.log("actions.patchProjectsByProjectId.request=>",data)
         dispatch(
           actions.patchProjectsByProjectId.request({
             projectId: editProjectId,
             name: data.name,
-            customerId: data.customerId,
+            customerId: data.customerId || null,
             website: data.website,
-            intermediaryId: data.intermediaryId,
+            intermediaryId: data.intermediaryId || null,
           }),
         );
       }),
@@ -78,8 +79,8 @@ export const useEditProjectDialog = () => {
     reset({
       name: editProject?.name || "",
       website: editProject?.website || "",
-      customerId: editProject?.customer._id || null,
-      intermediaryId: editProject?.intermediary._id || null,
+      customerId: editProject?.customer?._id || null,
+      intermediaryId: editProject?.intermediary?._id || null,
     });
   }, [reset, editProject]);
 

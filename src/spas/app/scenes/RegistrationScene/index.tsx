@@ -22,7 +22,7 @@ export const RegistrationScene = memo(({}: RegistrationSceneProps) => {
       <Typography component="h1" variant="h5" color="primary">
         {t("sign.up")}
       </Typography>
-      <Paper sx={{ p: 4, minWidth: "480px" }}>
+      <Paper sx={{ p: 4, minWidth: {xs:"unset",sm:"480px"}}}>
         <RegisterForm />
       </Paper>
     </Stack>

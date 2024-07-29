@@ -43,7 +43,7 @@ export default async function handler(
     await Job.delete(jobId);
 
     return ResponseHandler.json<DeleteJobsByJobIdApi.SuccessResponse>(res, {
-      message: i18n.t("job.name") + " " + i18n.t("delete.success"),
+      message: "Commessa eliminata",
     });
   } catch (e) {
     console.error(e);

@@ -30,7 +30,7 @@ export default async function handler(
     await User.create(email, password, role as UserRoles);
 
     return ResponseHandler.json<PostUsersApi.SuccessResponse>(res, {
-      message: i18n.t("generic.user") + " " + i18n.t("generic.success"),
+      message: "Utente creato con successo",
     });
   } catch (e) {
     console.error(e);

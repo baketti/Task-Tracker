@@ -23,12 +23,10 @@ export const itTranslations: MakeStringValues<Translations> = {
   "customers.name": "Cliente",
   "customers.logoUrl": "Logo",
   "check.active": "E` attiva?",
-  "delete.success": "eliminato",
   "generic.name": "Nome",
   "generic.hours": "Ore di stage",
   "generic.start": "Data d'inizio",
   "generic.save": "Salva",
-  "generic.success": "creato con successo",
   "generic.user": "Utente",
   "generic.cancel": "Annulla",
   "generic.confirm": "Conferma",
@@ -39,7 +37,6 @@ export const itTranslations: MakeStringValues<Translations> = {
   "job.noAvailableJobs": "Nessuna commessa disponibile da assegnare",
   "jobs.deleteTitle": "Sei sicuro di voler eliminare questa commessa?",
   "jobs.editTitle": "Modifica commessa",
-  "patch.success": "aggiornato con successo",
   "project.add": "Aggiungi Progetto",
   "projects.createTitle": "Crea Progetto",
   "project.name": "Progetto",
@@ -70,11 +67,6 @@ export const itTranslations: MakeStringValues<Translations> = {
   "workers.readOnly": "Sola lettura",
   "workers.removeJobConfirm":
     "Sei sicuro di voler rimuovere l'assegnamento della commessa?",
-  "invalid.credentials": "Credenziali non valide",
-  "login.success": "Login effettuato con successo",
-  "only.admin":
-    "Non sei autorizzato, solo gli amministratori possono eseguire questa azione",
-  "is.loggedout": "Non sei loggato, per favore esegui il login",
   "lang.it": "Italiano",
   "lang.en": "Inglese",
 };

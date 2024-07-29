@@ -37,7 +37,7 @@ export default async function handler(
 
     return ResponseHandler.json<PostProjectsApi.SuccessResponse>(res, {
       project: project.toClientVersion(),
-      message: i18n.t("project.name") + " " + i18n.t("generic.success"),
+      message: "Progetto creato con successo",
     });
   } catch (e) {
     console.error(e);

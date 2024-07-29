@@ -27,23 +27,29 @@ export default async function handler(
     }
 
     const { jobId } = queryStringParameters;
+
     const job = await Job.getById(jobId);
+
     if (!job) {
-      return ResponseHandler.json<ErrorResponse>(res, {}, StatusCodes.NotFound);
+      return ResponseHandler.json<ErrorResponse>(
+        res, 
+        {}, 
+        StatusCodes.NotFound
+      );
     }
 
     const { name, projectId, isActive } = payload;
-
+    
     await job.patch({
       name: name ?? job.name,
       //income: income ?? job.income,
       isActive: isActive ?? job.isActive,
-      projectId: projectId ?? job.projectId,
+      projectId: projectId,
     });
 
     return ResponseHandler.json<PatchJobsByJobIdApi.SuccessResponse>(res, {
       job: job.toClientVersion(),
-      message: i18n.t("job.name") + " " + i18n.t("patch.success"),
+      message: "Commessa aggiornata con successo",
     });
   } catch (e) {
     console.error(e);

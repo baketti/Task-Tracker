@@ -17,7 +17,6 @@ export type Translations = Readonly<{
   "customers.name": string;
   "customers.logoUrl": string;
   "customers.createTitle": string;
-  "delete.success": string;
   "drawer.customers": string;
   "drawer.projects": string;
   "drawer.workers": string;
@@ -29,10 +28,8 @@ export type Translations = Readonly<{
   "generic.hours": string;
   "generic.cancel": string;
   "generic.confirm": string;
-  "generic.success": string;
   "generic.user": string;
   "is.required": string;
-  "patch.success": string;
   "job.add": string;
   "job.assign": string;
   "job.name": string;
@@ -68,10 +65,6 @@ export type Translations = Readonly<{
   "workers.totalHours": string;
   "workers.readOnly": string;
   "workers.removeJobConfirm": string;
-  "invalid.credentials": string;
-  "login.success": string;
-  "only.admin": string;
-  "is.loggedout": string;
   "lang.en": string;
   "lang.it": string;
 }>;

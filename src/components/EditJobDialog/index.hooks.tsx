@@ -27,14 +27,18 @@ export const useEditJobDialog = () => {
   },[t])
 
   const jobs = useSelector(selectors.getJobsList);
+
   const editJobId = useSelector(selectors.getEditJobId);
+
   const editJob = useMemo(
     () => jobs.find((job) => job._id == editJobId),
     [editJobId, jobs],
   );
+
   const isEditingJob = useSelector(
     selectors.getAjaxIsLoadingByApi(actions.patchJobsByJobId.api),
   );
+
   const isEditJobDialogOpen = useSelector(selectors.getIsDialogOpen)[
     DialogTypes.EDIT_JOB
   ];
@@ -64,7 +68,7 @@ export const useEditJobDialog = () => {
             jobId: editJobId,
             name: data.name,
             //isActive: data.isActive,
-            projectId: data.projectId,
+            projectId: data.projectId || null,
           }),
         );
       }),

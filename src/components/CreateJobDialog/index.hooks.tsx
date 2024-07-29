@@ -1,3 +1,4 @@
+import { useCallback, useMemo, useEffect } from "react";
 import { useTypedTranslations } from "@/hooks/useTypedTranslations";
 import { useDispatch, useSelector } from "react-redux";
 import { actions, selectors } from "@/spas/app/redux-store";
@@ -5,11 +6,11 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { DialogTypes } from "@/spas/app/redux-store/slices/ui/ui.interfaces";
-import { useCallback, useMemo } from "react";
 
 export const useCreateJobDialog = () => {
   const [t] = useTypedTranslations();
-  
+  const dispatch = useDispatch();
+
   const schema = useMemo(() => {
     return yup.object({
       name: yup
@@ -29,6 +30,7 @@ export const useCreateJobDialog = () => {
   });
 
   const {
+    reset,
     handleSubmit,
     formState: { isValid, isSubmitted },
   } = formData;
@@ -38,8 +40,6 @@ export const useCreateJobDialog = () => {
   );
 
   const submitDisabled = (isSubmitted && !isValid) || isCreatingJob;
-
-  const dispatch = useDispatch();
 
   const isCreateJobDialogOpen = useSelector(selectors.getIsDialogOpen)[
     DialogTypes.CREATE_JOB
@@ -52,6 +52,7 @@ export const useCreateJobDialog = () => {
       }),
     [dispatch, handleSubmit],
   );
+  
   const handleCloseDialog = useCallback(() => {
     dispatch(
       actions.setDialogOpen({
@@ -59,7 +60,18 @@ export const useCreateJobDialog = () => {
         open: false,
       }),
     );
-  }, [dispatch]);
+    reset({
+      name: "",
+      projectId: "",
+    })
+  }, [dispatch,reset]);
+
+  useEffect(() => {
+    reset({
+      name: "",
+      projectId: "",
+    })
+  },[reset])
 
   return {
     formData,

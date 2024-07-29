@@ -46,7 +46,7 @@ export default async function handler(
       res,
       {
         customer: customer.toClientVersion(),
-        message: i18n.t("customers.name") + " " + i18n.t("patch.success"),
+        message: "Cliente aggiornato con successo",
       },
     );
   } catch (e) {

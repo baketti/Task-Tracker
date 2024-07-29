@@ -31,7 +31,7 @@ export default async function handler(
 
     return ResponseHandler.json<PostJobsApi.SuccessResponse>(res, {
       job: job.toClientVersion(),
-      message: i18n.t("job.name") + " " + i18n.t("generic.success"),
+      message: "Commessa creata con successo",
     });
   } catch (e) {
     console.error(e);

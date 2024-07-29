@@ -24,27 +24,15 @@ export default async function handler(
       );
     }
     const { email, password } = payload;
+
     const user = await User.getByCredentials(email, password);
 
     if (!user) {
       return ResponseHandler.json<ErrorResponse>(
         res,
-        { message: i18n.t("invalid.credentials") },
+        { message: "Credenziali invalide" },
         StatusCodes.Unauthorized,
       );
-    }
-
-    if (!user.isAdmin) {
-      return {
-        success: false,
-        response: ResponseHandler.json<ErrorResponse>(
-          res,
-          {
-            message: i18n.t("only.admin"),
-          },
-          StatusCodes.Forbidden,
-        ),
-      };
     }
 
     originalReq.session.user = {
@@ -55,7 +43,7 @@ export default async function handler(
     await originalReq.session.save();
 
     return ResponseHandler.json<PostSessionsApi.SuccessResponse>(res, {
-      message: i18n.t("login.success"),
+      message: "Login effettuato con successo",
       user: user.toClientVersion(),
     });
   } catch (e) {

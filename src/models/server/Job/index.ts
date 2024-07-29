@@ -112,7 +112,7 @@ export class Job implements WithId<IJob> {
       _id: this._id.toHexString(),
       name: this.name,
       isActive: this.isActive,
-      projectId: this.projectId.toHexString(),
+      projectId: this.projectId?.toHexString(),
     };
   }
 

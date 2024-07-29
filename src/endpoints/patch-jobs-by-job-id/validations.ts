@@ -13,7 +13,7 @@ const payloadValidations =
     name: yup.string().min(3).optional(),
     //income: yup.number().positive().optional(),
     isActive: yup.boolean().optional(),
-    projectId: yupObjectId().optional(),
+    projectId: yupObjectId().optional().nullable(),
   });
 
 export default () => ({

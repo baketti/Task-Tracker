@@ -39,8 +39,8 @@ export const useEditWorkerDialog = () => {
         .number()
         .nullable()
         .when(["enableInternship"], {
-          is: (enableInternship, readOnly) =>
-            enableInternship === true && readOnly === false,
+          is: (enableInternship) =>
+            enableInternship === true,
           then: yup.number().required(),
           otherwise: yup.number().nullable(),
         }),
@@ -48,14 +48,14 @@ export const useEditWorkerDialog = () => {
         .string()
         .nullable()
         .when(["enableInternship"], {
-          is: (enableInternship, readOnly) =>
-            enableInternship === true && readOnly === false,
+          is: (enableInternship) =>
+            enableInternship === true,
           then: yup.string().required(),
           otherwise: yup.string().nullable(),
         }),
     });
   },[t])
-  
+
   const formData = useForm<EditWorkerDialogData>({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -79,6 +79,7 @@ export const useEditWorkerDialog = () => {
     handleSubmit,
     formState: { isValid, isSubmitted },
     reset,
+    setValue,
     control,
   } = formData;
   const submitDisabled = (isSubmitted && !isValid) || isEditingWorker;
@@ -121,10 +122,25 @@ export const useEditWorkerDialog = () => {
     dispatch(actions.setEditWorkerId(null));
   }, [dispatch]);
 
+  const enabledJobIds = useWatch({
+    control,
+    name: "enabledJobIds",
+  });
+
   const isInternshipEnabled = useWatch({
     control,
     name: "enableInternship",
   });
+
+  useEffect(() => {
+    if(enabledJobIds.length){
+      setValue("enableInternship",true)
+    }else if(!isInternshipEnabled){
+      reset({
+        enabledJobIds:[]
+      })
+    }
+  },[enabledJobIds,isInternshipEnabled,setValue,reset]);
 
   return {
     formData,

@@ -45,7 +45,7 @@ export default async function handler(
     return ResponseHandler.json<DeleteCustomersByCustomerIdApi.SuccessResponse>(
       res,
       {
-        message: i18n.t("customers.name") + " " + i18n.t("delete.success"),
+        message: "Cliente eliminato",
       },
     );
   } catch (e) {

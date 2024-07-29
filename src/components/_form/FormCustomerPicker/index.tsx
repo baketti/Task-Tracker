@@ -2,11 +2,6 @@ import React, { memo } from "react";
 import { useFormCustomerPicker } from "./index.hooks";
 import { FormAutocomplete } from "@/components/_form/FormAutocomplete";
 
-type CustomerOption = {
-  id: string;
-  value: string;
-};
-
 type FormCustomerPickerProps = {
   name: string;
   label?: string;
