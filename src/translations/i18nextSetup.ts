@@ -15,7 +15,7 @@ i18n.use(initReactI18next).init({
   interpolation: {
     escapeValue: false, // react already safes from xss
   },
-
+  react: { useSuspense: false }, 
   resources: {
     en: {
       common: enTranslations, // 'common' is our custom namespace

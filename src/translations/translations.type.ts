@@ -8,8 +8,8 @@ export type Translations = Readonly<{
   "authentication.register": string;
   "sign.in": string;
   "sign.up": string;
-  admin: string;
-  worker: string;
+  "admin": string;
+  "worker": string;
   "check.active": string;
   "customers.add": string;
   "customers.editTitle": string;

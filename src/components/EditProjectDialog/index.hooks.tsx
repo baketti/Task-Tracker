@@ -8,14 +8,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { DialogTypes } from "@/spas/app/redux-store/slices/ui/ui.interfaces";
 import { ObjectIdFe } from "@/models/common/JsUtility";
 
-export const useEditProjectDialog = () => {
-  type EditProjectDialogData = {
-    name: string;
-    website?: string;
-    customerId: ObjectIdFe;
-    intermediaryId?: ObjectIdFe;
-  };
+type EditProjectDialogData = {
+  name: string;
+  website?: string;
+  customerId: ObjectIdFe;
+  intermediaryId?: ObjectIdFe;
+};
 
+export const useEditProjectDialog = () => {
   const [t] = useTypedTranslations();
 
   const schema = yup.object({

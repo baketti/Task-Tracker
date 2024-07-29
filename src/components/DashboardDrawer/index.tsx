@@ -19,7 +19,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import { useTypedTranslations } from "@/hooks/useTypedTranslations";
-import { useInitializeTranslations } from "@/hooks/useInitializeTranslations";
+import { useInitializedTranslations } from "@/hooks/useInitializedTranslations";
 import { AppNavbar } from "../AppNavbar";
 import { Colors } from "@/themes";
 
@@ -81,7 +81,7 @@ export const DashboardDrawer = memo(({}: DashboardDrawerProps) => {
   } = useDashboardDrawer();
 
   const [t] = useTypedTranslations();
-  useInitializeTranslations();
+  useInitializedTranslations();
 
   return (
     <>
