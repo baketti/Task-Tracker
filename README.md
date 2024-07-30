@@ -25,7 +25,19 @@ MONGODB_URI=mongodb://127.0.0.1:27017/$MONGODB_NAME
 
 USER_SECRET_COOKIE_PASSWORD=<your secret cookie password>
 
-First, run the development server:
+First, create the database:
+
+```bash
+npm run "TASK:CreateDB"
+```
+
+Create a test user (email:"admin@admin.it", password:"12345678"):
+
+```bash
+npm run "TASK:CreateTestUser"
+```
+
+Run the development server:
 
 ```bash
 npm run dev
