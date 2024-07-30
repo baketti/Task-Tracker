@@ -69,8 +69,11 @@ export default responsiveFontSizes(
         styleOverrides: {
           paper: {
             borderRadius: 16,
-            minWidth: 480,
             padding: 8,
+            minWidth: '0px', 
+            '@media (min-width:600px)': {
+              minWidth: '480px',
+            },
           },
         },
       },

@@ -32,9 +32,8 @@ export const jobStore = createSlice({
       );
     });
     builder.addCase(extraActions.deleteJobsByJobId.success, (state, action) => {
-      state.list = (state.list ?? []).filter(
-        (job) => job._id !== action.payload.prepareParams.jobId,
-      );
+      state.list = state.list.filter((job) => 
+        job._id !== action.payload.prepareParams.jobId) ?? [];
     });
   },
 });

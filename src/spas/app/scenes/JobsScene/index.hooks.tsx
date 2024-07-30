@@ -5,8 +5,6 @@ import { GridColDef } from "@mui/x-data-grid";
 import { CustomerChip } from "@/components/CustomerChip";
 import { actions, selectors } from "@/spas/app/redux-store";
 import { DialogTypes } from "@/spas/app/redux-store/slices/ui/ui.interfaces";
-import { JobFe } from "@/models/client/JobFe";
-import { useProjectsScene } from "@/spas/app/scenes/ProjectsScene/index.hooks";
 import { IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";

@@ -29,12 +29,22 @@ export default async function handler(
     const { workerId } = queryStringParameters;
     const worker = await Worker.getById(workerId);
     if (!worker) {
-      return ResponseHandler.json<ErrorResponse>(res, {}, StatusCodes.NotFound);
+      return ResponseHandler.json<ErrorResponse>(
+        res, 
+        {}, 
+        StatusCodes.NotFound
+      );
     }
 
-    const { fullName, enabledJobIds, userId, isIntern, hours, startDate } =
-      req.payload;
-
+    const { 
+      fullName, 
+      enabledJobIds, 
+      userId, 
+      isIntern, 
+      hours, 
+      startDate 
+    } = req.payload;
+    
     await worker.patch({
       fullName: fullName ?? worker.fullName,
       enabledJobIds: enabledJobIds ?? worker.enabledJobIds,

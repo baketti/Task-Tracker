@@ -11,6 +11,7 @@ import { ObjectIdFe } from "@/models/common/JsUtility";
 import useConfirmDialog from "@/hooks/useConfirmDialog";
 import { UserRoles } from "@/models/common/UserCommon";
 import { Locales } from "@/models/common/Translation";
+import { CustomerChip } from "@/components/CustomerChip";
 
 export const useWorkerDetailsScene = () => {
   const [t] = useTypedTranslations();
@@ -26,20 +27,21 @@ export const useWorkerDetailsScene = () => {
   }, [navigate,user,languageCode]);
 
   const { workerId } = useParams();
-
-  useEffect(() => {
+  
+  useEffect(() => { 
     dispatch(
       actions.getWorkersByWorkerId.request({
         workerId,
       }),
     );
   }, [dispatch, workerId]);
-
+  
+  const worker = useSelector(selectors.getCurrentWorker);
+  
   const isLoadingWorker = useSelector(
     selectors.getAjaxIsLoadingByApi(actions.getWorkersByWorkerId.api),
   );
-  const worker = useSelector(selectors.getCurrentWorker);
-
+  
   const associatedJobIdRef = useRef<ObjectIdFe>(null);
 
   const handleRemoveJobAssociation = useCallback(() => {
@@ -69,6 +71,20 @@ export const useWorkerDetailsScene = () => {
       {
         field: "enabledJob",
         headerName: t("job.name"),
+        minWidth: 150,
+      },
+      {
+        field: "projectName",
+        headerName: t("project.name"),
+        minWidth: 150,
+        maxWidth: 150,
+      },
+      {
+        field: "projectCustomer",
+        headerName: t("project.customer"),
+        renderCell: (params) =>
+          params.value ? <CustomerChip customer={params.value} /> : null,
+        minWidth: 150,
         flex: 1,
       },
       {
@@ -90,24 +106,22 @@ export const useWorkerDetailsScene = () => {
         },
       },
     ],
-    [handleOpenRemoveJobAssociationDialog, t],
+    [handleOpenRemoveJobAssociationDialog, t]
   );
 
   const jobs = useSelector(selectors.getJobsList);
 
-  const workerRows = useMemo(
-    () =>
-      worker
-        ? worker.enabledJobIds.map((jobId, i) => {
-            const job = jobs.find((job) => job._id === jobId);
-            return {
-              id: job._id,
-              enabledJob: job.name,
-            };
-          })
-        : [],
-    [worker, jobs],
-  );
+  const workerRows = useMemo(() => {
+    return worker ? worker.enabledJobIds.map((jobId) => {
+      const job = jobs.find((job) => job?._id === jobId);
+      return {
+        id: job._id,
+        enabledJob: job.name, 
+        projectName: job.project.name,
+        projectCustomer: job.project.customer,
+      };
+    }) : []
+   },[worker, jobs]);
 
   const onAssociateJobsButtonClick = useCallback(() => {
     dispatch(

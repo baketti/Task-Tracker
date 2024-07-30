@@ -35,24 +35,8 @@ export const useEditWorkerDialog = () => {
       fullName: yup.string().min(3, t("validation.nameLen")).optional(),
       enabledJobIds: yup.array().nullable().of(yup.string()),
       enableInternship: yup.boolean().optional(),
-      hours: yup
-        .number()
-        .nullable()
-        .when(["enableInternship"], {
-          is: (enableInternship) =>
-            enableInternship === true,
-          then: yup.number().required(),
-          otherwise: yup.number().nullable(),
-        }),
-      startDate: yup
-        .string()
-        .nullable()
-        .when(["enableInternship"], {
-          is: (enableInternship) =>
-            enableInternship === true,
-          then: yup.string().required(),
-          otherwise: yup.string().nullable(),
-        }),
+      hours: yup.number().nullable(),
+      startDate: yup.string().nullable(),
     });
   },[t])
 
@@ -71,9 +55,8 @@ export const useEditWorkerDialog = () => {
     selectors.getAjaxIsLoadingByApi(actions.patchWorkersByWorkerId.api),
   );
 
-  const isEditWorkerDialogOpen = useSelector(selectors.getIsDialogOpen)[
-    DialogTypes.EDIT_WORKER
-  ];
+  const isEditWorkerDialogOpen = useSelector(
+    selectors.getIsDialogOpen)[DialogTypes.EDIT_WORKER];
 
   const {
     handleSubmit,
@@ -134,13 +117,9 @@ export const useEditWorkerDialog = () => {
 
   useEffect(() => {
     if(enabledJobIds.length){
-      setValue("enableInternship",true)
-    }else if(!isInternshipEnabled){
-      reset({
-        enabledJobIds:[]
-      })
+      setValue("enableInternship",true) 
     }
-  },[enabledJobIds,isInternshipEnabled,setValue,reset]);
+  },[enabledJobIds,isInternshipEnabled,setValue]);
 
   return {
     formData,

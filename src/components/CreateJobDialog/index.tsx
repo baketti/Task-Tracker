@@ -28,8 +28,8 @@ export const CreateJobDialog = memo(({}: CreateJobDialogProps) => {
   } = useCreateJobDialog();
 
   return (
-    <FormProvider {...formData}>
-      <Dialog open={isCreateJobDialogOpen} onClose={handleCloseDialog}>
+    <Dialog open={isCreateJobDialogOpen} onClose={handleCloseDialog} sx={{minWidth:{xs:'unset',sm:'480px'}}}>
+      <FormProvider {...formData}>
         <form onSubmit={triggerSubmit}>
           <DialogTitle>{t("job.add")}</DialogTitle>
           <DialogContent>
@@ -60,8 +60,8 @@ export const CreateJobDialog = memo(({}: CreateJobDialogProps) => {
             </AppButton>
           </DialogActions>
         </form>
-      </Dialog>
-    </FormProvider>
+      </FormProvider>
+    </Dialog>
   );
 });
 CreateJobDialog.displayName = "CreateJobDialog";
