@@ -9,7 +9,7 @@ export const useDashboardDrawer = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   const handleDrawerOpen = useCallback(() => {
     setOpen(true);
