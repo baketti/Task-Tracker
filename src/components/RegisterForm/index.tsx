@@ -26,9 +26,9 @@ export const RegisterForm = memo(({}: RegisterFormProps) => {
       <form onSubmit={triggerSubmit}>
         <Stack spacing={2}>
           <FormTextField name="email" label="Email" type="email" />
-          <FormSelect name="role" label="Role" options={userRoleOptions} />
+          <FormSelect name="role" label={t("role")} options={userRoleOptions} />
           <FormPassword name="password" label="Password" />
-          <FormPassword name="confirmPassword" label="Conferma Password" />
+          <FormPassword name="confirmPassword" label={t("password.confirm")} />
           <Stack alignItems="center">
             <Link
               style={{ width: "max-content" }}

@@ -28,9 +28,7 @@ export const LoginForm = memo(({}: LoginFormProps) => {
           <Stack alignItems="center">
             <Link
               style={{ width: "max-content" }}
-              to={
-                isLoginAjaxLoading
-                  ? ""
+              to={isLoginAjaxLoading ? ""
                   : `/${languageCode}/app/authentication/registration`
               }
             >

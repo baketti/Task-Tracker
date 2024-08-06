@@ -45,6 +45,7 @@ export type Translations = Readonly<{
   "project.website": string;
   "projects.deleteTitle": string;
   "projects.editTitle": string;
+  "password.confirm": string; 
   "password.match": string; 
   "password.len": string; 
   "role":string;

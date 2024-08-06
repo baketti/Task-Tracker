@@ -45,6 +45,7 @@ export const itTranslations: MakeStringValues<Translations> = {
   "project.website": "Sito Web",
   "projects.deleteTitle": "Sei sicuro di voler eliminare questo progetto?",
   "projects.editTitle": "Modifica progetto",
+  "password.confirm": "Conferma password",
   "password.match":"Le password devono coincidere",
   "password.len":"La password deve contenere almeno 8 caratteri",
   "role":"ruolo",

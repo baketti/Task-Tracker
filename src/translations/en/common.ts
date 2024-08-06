@@ -45,6 +45,7 @@ export const enTranslations: MakeStringValues<Translations> = {
   "project.website": "Website",
   "projects.deleteTitle": "Are you sure you want to delete this project?",
   "projects.editTitle": "Edit project",
+  "password.confirm":"Confirm password",
   "password.match":"Passwords must match",
   "password.len":"Password must contain at least 8 characters",
   "role":"role",
