@@ -41,9 +41,7 @@ export default async function handler(
         StatusCodes.InternalServerError,
       );
     }
-    if (user.role == "admin") {
-    } else {
-    }
+
     return ResponseHandler.json<GetUsersMeApi.SuccessResponse>(res, {
       user: user.toClientVersion(),
     });

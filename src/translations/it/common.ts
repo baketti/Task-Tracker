@@ -48,7 +48,7 @@ export const itTranslations: MakeStringValues<Translations> = {
   "password.confirm": "Conferma password",
   "password.match":"Le password devono coincidere",
   "password.len":"La password deve contenere almeno 8 caratteri",
-  "role":"ruolo",
+  "role":"Ruolo",
   "validation.required": "Questo campo è obbligatorio",
   "validation.nameLen": "Il nome deve essere lungo almeno 3 caratteri",
   "review.rows": "Rivedi le righe",

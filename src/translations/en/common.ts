@@ -48,7 +48,7 @@ export const enTranslations: MakeStringValues<Translations> = {
   "password.confirm":"Confirm password",
   "password.match":"Passwords must match",
   "password.len":"Password must contain at least 8 characters",
-  "role":"role",
+  "role":"Role",
   "validation.required": "This is a required field",
   "validation.nameLen": "Name must be at least 3 characters long",
   "review.rows": "Review rows",
