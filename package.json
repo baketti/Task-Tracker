@@ -38,6 +38,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-dropzone": "12.0.5",
+    "react-helmet": "^6.1.0",
     "react-hook-form": "7.29.0",
     "react-hydration-provider": "^2.1.0",
     "react-i18next": "11.17.3",

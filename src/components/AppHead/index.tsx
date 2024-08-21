@@ -1,5 +1,6 @@
 import React, { memo } from "react";
 import Head from "next/head";
+import { Helmet } from "react-helmet";
 
 type AppHeadProps = {
   title: string;
