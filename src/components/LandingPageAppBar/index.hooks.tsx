@@ -1,3 +1,7 @@
+import { useTypedTranslations } from "@/hooks/useTypedTranslations";
+
 export const useLandingPageAppBar = () => {
-  return {};
+  const [t] = useTypedTranslations();
+
+  return { t };
 };

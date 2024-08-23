@@ -16,7 +16,7 @@ type LandingPageAppBarProps = { locale } & AppBarProps;
 
 export const LandingPageAppBar = memo(
   ({ locale, ...props }: LandingPageAppBarProps) => {
-    const {} = useLandingPageAppBar();
+    const { t } = useLandingPageAppBar();
 
     return (
       <AppBar sx={{ height: 80 }} {...props}>
@@ -53,7 +53,7 @@ export const LandingPageAppBar = memo(
                 href={`${locale}/app/authentication/login`}
                 data-cy="login-button"
               >
-                Login
+                {t("authentication.login")}
               </Button>
               <LanguageMenuNext basePath="" />
             </Stack>
